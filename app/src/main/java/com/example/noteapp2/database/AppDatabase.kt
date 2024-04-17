@@ -1,6 +1,7 @@
 package com.example.noteapp2.database
 
 import android.content.Context
+import androidx.compose.runtime.mutableStateOf
 import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Delete
@@ -39,8 +40,9 @@ interface NoteDao{
     @Query("select * from NoteEntity")
     fun getAllNotes(): List<NoteEntity>
 
-//    @Query("select * from ExpenseEntity order by date")
-//    fun sortByDate():List<ExpenseEntity>
+    @Query("select * from NoteEntity where title like '%' || :s || '%'")
+    fun searchQuery(s:String):List<NoteEntity>
+
 }
 
 @Database(entities = [NoteEntity::class], version = 1)

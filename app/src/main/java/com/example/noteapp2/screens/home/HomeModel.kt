@@ -13,5 +13,10 @@ class HomeModel(private val appDao: NoteDao) {
         appDao.deleteNote(noteEntity)
     }
 
+    fun getListSearch(s:String):List<NoteEntity>{
+        return appDao.searchQuery(s)
+    }
+
+
 
 }
